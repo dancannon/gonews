@@ -41,8 +41,8 @@ module.exports = function(grunt) {
         },
         jshint: {
             gruntfile: ['GruntFile.js'],
-            development: ['js/**/*.js', '!js/vendors/**/*.js', '!js/bower_components/**/*.js', '!js/bootstrap.js', '!js/bootstrap/**/*.js'],
-            build: ['js/**/*.js', '!js/vendors/**/*.js', '!js/bower_components/**/*.js', '!js/bower_components/**/*.js', '!js/bootstrap/**/*.js']
+            development: ['js/**/*.js', '!js/vendors/**/*.js', '!js/bower_components/**/*.js', '!js/bootstrap.js', '!js/bootstrap/**/*.js', '!js/source-map.js'],
+            build: ['js/**/*.js', '!js/vendors/**/*.js', '!js/bower_components/**/*.js', '!js/bower_components/**/*.js', '!js/bootstrap/**/*.js', '!js/source-map.js']
         },
         jsbeautifier: {
             files: ['js/**/*.js', '!js/combined.js', '!js/combined.min.js', '!js/bootstrap.js', '!js/source-map.js']
