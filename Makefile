@@ -4,7 +4,7 @@ build:
 	go build -o bin/gonews
 	
 deploy:
-	go get -u
+	git pull origin master
 	go install
 	restart gonews
 
