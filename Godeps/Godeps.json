@@ -1,6 +1,9 @@
 {
 	"ImportPath": "github.com/dancannon/gonews",
 	"GoVersion": "devel +6e163a22bea3 Tue Feb 25 14:39:12 2014 +0400",
+	"Packages": [
+		"./..."
+	],
 	"Deps": [
 		{
 			"ImportPath": "code.google.com/p/cascadia",
