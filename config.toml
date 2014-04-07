@@ -1,0 +1,24 @@
+name = "GoNews_1"
+env = "development"
+address = ":3000"
+
+# Paths
+public_path = "web/public"
+template_path = "web/templates"
+
+[security]
+hash_key = "JkQC9PxJ4eO1mc2jGrcH7qImBJyxpIIRYfjYaGZQFizHibL19GeJUCUFz36EmCx6"
+block_key = "AFDBA3FD2782B98DA928B609B920A82C"
+
+[rethinkdb]
+address = "localhost:28015"
+database = "news"
+
+[redis]
+address = ":6379"
+
+[nsq]
+lookup_addresses = ["127.0.0.1:4161"]
+
+[gofetch]
+config_file = "gofetch.json"

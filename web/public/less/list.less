@@ -1,0 +1,52 @@
+.list-item{
+    padding: 15px 30px 15px 15px;
+    margin: 15px 0;
+    background-color: #FFF;
+    border: 1px solid @gray-lighter;
+    border-left: 5px solid @gray-lighter;
+
+    &:hover, &:active {
+        border-left-color: @gray;
+    }
+    h4 {
+        margin-top: 0;
+    }
+    p:last-child {
+        margin-bottom: 0;
+    }
+    code, .highlight {
+        background-color: #fff;
+    }
+    .single-button {
+        height: 65px;
+        padding: 15px 0;
+    }
+    .large-button {
+        height: 65px;
+
+        > a.btn {
+            padding: 23px 12px
+        }
+    }
+}
+
+.vote-buttons {
+    > .active {
+        color: @nav-pills-active-link-hover-color;
+        background-color: @nav-pills-active-link-hover-bg;
+
+            > .badge {
+            color: @badge-active-color;
+            background-color: @badge-active-bg;
+        }
+    }
+}
+
+// Extension to the media component
+.media-body {
+    margin-right: 150px;
+}
+.media-meta {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}

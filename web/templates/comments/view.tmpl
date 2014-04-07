@@ -1,0 +1,34 @@
+<li id="comment-{{ .Comment.Id }}" class="comment media">
+    <div class="comment-buttons media-buttons btn-group btn-group-vertical pull-right">
+        <button type="button" class="comments-btn btn btn-default" data-toggle="collapse" data-target="#comment-form-{{.Comment.Id}}">
+            <span class="icomoon icomoon-reply"></span>
+        </button>
+    </div>
+    <div class="comment-vote-buttons media-buttons btn-group btn-group-vertical pull-left">
+        <a href="/comment/like/{{.Id}}" class="downvote-btn btn btn-default {{if eq .UserVote "like"}}active{{end}}">
+            <span class="icomoon icomoon-thumbs-up-5"></span>
+            <span class="badge">{{ .Comment.Likes }}</span>
+        </a>
+        <a href="/comment/dislike/{{.Id}}" class="upvote-btn btn btn-default {{if eq .UserVote "dislike"}}active{{end}}">
+            <span class="icomoon icomoon-thumbs-up-6"></span>
+            <span class="badge">{{ .Comment.Dislikes }}</span>
+        </a>
+    </div>
+    <div class="comment-meta media-top-meta">
+        <small class="author">By <a href="#">{{ .Comment.AuthorName }}</a></small>
+        <small class="published">On <time datetime="{{ .Comment.Created }}" pubdate="">{{ .Comment.Created }}</time></small>
+    </div>
+    <div class="media-body comment-body">
+        <p>{{.RenderContent}}</p>
+    </div>
+    <div class="child-comment-form collapse clear clearfix" id="comment-form-{{.Comment.Id}}" style="margin-top:15px;">
+    {{template "comments/new_child_form" .}}
+    </div>
+    {{if gt (len .Children) 0}}
+    <ul id="comment-list"class="comment-list media-list">
+        {{range .Children}}
+            {{template "comments/view" .}}
+        {{end}}
+    </ul>
+    {{end}}
+</li>

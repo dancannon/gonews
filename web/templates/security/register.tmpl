@@ -1,0 +1,58 @@
+<div class="container">
+    <form action='/register' method="POST">
+        <legend>Register</legend>
+
+        {{range .Errors.Overall}}
+        <div class="alert alert-danger">{{.}}</div>
+        {{end}}
+
+        <div class="form-group {{if .Errors.FieldError "Username"}}has-error{{end}}">
+            <!-- Username -->
+            <label for="username">Username</label>
+            <input class="form-control" type="text" id="username" name="username" value="{{.Username}}">
+            {{if .Errors.FieldError "Username"}}
+                <p class="help-block">{{.Errors.FieldError "Username"}}</p>
+            {{else}}
+                <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+            {{end}}
+        </div>
+
+        <div class="form-group {{if .Errors.FieldError "Email"}}has-error{{end}}">
+            <!-- E-mail -->
+            <label for="email">E-mail</label>
+            <input class="form-control" type="text" id="email" name="email" value="{{.Email}}">
+            {{if .Errors.FieldError "Email"}}
+                <p class="help-block">{{.Errors.FieldError "Email"}}</p>
+            {{else}}
+                <p class="help-block">Please provide your E-mail</p>
+            {{end}}
+        </div>
+
+        <div class="form-group {{if .Errors.FieldError "Password"}}has-error{{end}}">
+            <!-- Password-->
+            <label for="password">Password</label>
+            <input class="form-control" type="password" id="password" name="password">
+            {{if .Errors.FieldError "Password"}}
+                <p class="help-block">{{.Errors.FieldError "Password"}}</p>
+            {{else}}
+                <p class="help-block">Password should be at least 4 characters</p>
+            {{end}}
+        </div>
+
+        <div class="form-group {{if .Errors.FieldError "PasswordConfirm"}}has-error{{end}}">
+            <!-- Password -->
+            <label  for="password_confirm">Password (Confirm)</label>
+            <input class="form-control" type="password" id="password_confirm" name="password_confirm">
+            {{if .Errors.FieldError "PasswordConfirm"}}
+                <p class="help-block">{{.Errors.FieldError "PasswordConfirm"}}</p>
+            {{else}}
+                <p class="help-block">Please confirm password</p>
+            {{end}}
+        </div>
+
+        <div class="form-group">
+            <!-- Button -->
+            <button class="btn btn-success">Register</button>
+        </div>
+    </form>
+</div> <!-- /container -->

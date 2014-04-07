@@ -1,0 +1,29 @@
+<div class="keyvalue-container">
+    <div class="row keyvalue-row" ng-class="{'keyvalue-new-row':!value.active}" ng-repeat="value in values">
+        <ng-form name="keyvalueForm">
+            <div class="col-lg-4 keyvalue-key">
+                <div class="input-group">
+                    <input name="key" type="text" class="form-control" placeholder="Key"
+                        ng-if="!value.preset" ng-model="value.key" ng-focus="value.active || addValue()"  ng-required="(value.active && !value.preset)  || value.required">
+                    <input name="key" type="text" class="form-control" disabled ng-if="value.preset" value="[[value.name || value.key]]">
+                </div>
+            </div>
+            <div class="col-lg-8 keyvalue-value">
+                <div class="input-group">
+                    <input name="value" type="text" class="form-control" placeholder="Value" ng-model="value.value"
+                    ng-if="value.choices | empty"
+                    ng-required="(value.active && !value.preset)  || value.required" ng-focus="value.active || addValue()">
+                    <select name="value" class="form-control"
+                        ng-options="key as choice for (key , choice) in value.choices"
+                        ng-model="value.value"
+                        ng-if="!(value.choices | empty)"
+                        ng-required="(value.active && !value.preset) || value.required">
+                    </select>
+                    <span class="input-group-btn" ng-if="value.active && !value.preset">
+                        <button type="button" class="btn btn-danger" ng-click="deleteValue($index)">Delete</button>
+                    </span>
+                </div>
+            </div>
+        </ng-form>
+    </div>
+</div>

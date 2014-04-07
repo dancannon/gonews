@@ -1,0 +1,93 @@
+<div class="content container" role="main">
+<div class="content container" role="main">
+    <div class="well media">
+        <div class="vote-buttons media-buttons btn-group btn-group-vertical pull-left">
+            <a href="/post/like/{{.Id}}" class="downvote-btn btn btn-default {{if eq .UserVote "like"}}active{{end}}">
+                <span class="icomoon icomoon-thumbs-up-5"></span>
+                <span class="badge">{{.Likes}}</span>
+            </a>
+            <a href="/post/dislike/{{.Id}}" class="upvote-btn btn btn-default {{if eq .UserVote "dislike"}}active{{end}}">
+                <span class="icomoon icomoon-thumbs-up-6"></span>
+                <span class="badge">{{.Dislikes}}</span>
+            </a>
+        </div>
+        <div class="media-body post-body">
+            {{if eq .Type "link"}}
+            <a href="{{.Link}}" class="post-heading media-heading"><h4>{{.Title}}</h4></a>
+            {{else}}
+            <a href="/post/{{.ActualUrl}}" class="post-heading media-heading"><h4>{{.Title}}</h4></a>
+            {{end}}
+        </div>
+        <div class="post-meta media-meta">
+            <small class="author">By <a href="/profile/{{.AuthorName}}">{{.AuthorName}}</a></small>
+            <small class="published">On <time datetime="{{.Created}}" pubdate="">{{.Created}}</time></small>
+            <div class="tags hidden-xs">
+            </div>
+        </div>
+
+        <hr />
+
+        {{if eq .Type "text"}}
+        <div class="post-content">
+            <p>{{raw .Content}}</p>
+        </div>
+        {{else if eq .Type "link"}}
+            {{if eq .EmbedType "fetching"}}
+            <div class="text-center">
+                <p>The content is currently being fetched.</p>
+            </div>
+            {{else}}
+            <div class="post-content post-content-embed">
+                {{if eq .EmbedType "general"}}
+                    <h2>{{.EmbedContent.title}}</h2>
+                    {{if .EmbedContent.content}}{{nl2br .EmbedContent.content}}{{end}}
+                {{else if eq .EmbedType "text"}}
+                    <h2>{{.EmbedContent.title}}</h2>
+                    {{raw .EmbedContent.text}}
+                {{else if eq .EmbedType "image"}}
+                    <div class="text-center">
+                        {{if .EmbedContent.title}}<h2>{{.EmbedContent.title}}</h2>{{end}}
+                        {{if .EmbedContent.author}}
+                            {{if .EmbedContent.author.url}}
+                            <p>By <a href='{{.EmbedContent.author.url}}'>{{.EmbedContent.author.name}}</a></p>
+                            {{else}}
+                            <p>By {{.EmbedContent.author.name}}</p>
+                            {{end}}
+                        {{end}}
+                        <img src='{{.EmbedContent.url}}' width='{{.EmbedContent.width}}' height='{{.EmbedContent.height}}' />
+                    </div>
+                {{else if or (eq .EmbedType "video") (eq .EmbedType "rich")}}
+                    <div class="text-center">
+                        {{if .EmbedContent.title}}<h2>{{.EmbedContent.title}}</h2>{{end}}
+                        {{if .EmbedContent.author}}
+                            {{if .EmbedContent.author.url}}
+                            <p>By <a href='{{.EmbedContent.author.url}}'>{{.EmbedContent.author.name}}</a></p>
+                            {{else}}
+                            <p>By {{.EmbedContent.author.name}}</p>
+                            {{end}}
+                        {{end}}
+                        {{raw .EmbedContent.html}}
+                    </div>
+                {{end}}
+            </div>
+                {{$userId := get_user.Id}}
+                {{if and is_authenticated (eq .AuthorId $userId)}}
+                <div class="text-right">
+                    <a href="/post/refresh/{{.Id}}">Refresh Content</a> |
+                    <a href="/rules/host/{{.Host}}?post={{.Id}}">Improve Content Preview (Advanced)</a>
+                </div>
+                {{end}}
+            {{end}}
+        {{end}}
+    </div>
+    <a name="comments" />
+    <div class="well comments">
+        {{template "comments/new_form" .CreateCommentsNewView}}
+        <hr />
+        <ul id="comments comment-list"class="comment-list media-list">
+            {{range .Comments}}
+                {{template "comments/view" .}}
+            {{end}}
+        </ul>
+    </div>
+</div><!-- /.container -->

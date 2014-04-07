@@ -1,0 +1,27 @@
+// Post type specific styles
+.post-list-item {
+
+}
+.post-preview {
+    max-height: 360px;
+    padding: 5px 15px;
+    margin: -16px 0 15px 0;
+    overflow-y: auto;
+    background-color: @gray-lighter;
+    border-left: 5px solid @gray;
+
+    &.image-post-type {
+        padding: 0;
+
+        .post-details {
+            padding-left: 0;
+        }
+        .item {
+            height: 256px;
+        }
+        .item img {
+            height: 256px;
+            margin: 0 auto;
+        }
+    }
+}

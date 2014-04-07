@@ -1,0 +1,326 @@
+<style>
+    code {
+        height: 640px;
+        border: 1px solid black;
+    }
+    .ace_editor {
+        height: 212px;
+    }
+    .keyvalue-row {
+        margin-bottom: 5px;
+    }
+    .keyvalue-row .input-group {
+        width: 100%;
+    }
+    .keyvalue-key {
+        padding-right: 0;
+    }
+    .keyvalue-key .input-group {
+        display: inline-block;
+    }
+    .keyvalue-value {
+        padding-left: 0;
+    }
+    .keyvalue-value .form-control {
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+    }
+    .keyvalue-row .form-control {
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+    }
+    .keyvalueeditor-key,
+    .keyvalueeditor-value {
+        display: inline;
+        width: 250px;
+        margin-right: 10px !important;
+    }
+    .keyvalueeditor-key:focus,
+    .keyvalueeditor-value:focus {
+        border-color: #999 !important;
+        outline: 0 !important;
+        outline-width: 0 !important;
+    }
+
+    .keyvalueeditor-valueTypeSelector {
+        width: 100px;
+        margin-right: 10px;
+    }
+
+    #rule-builder-simple .navbar {
+        border-radius: 0;
+        border-radius: 0;
+        margin-bottom: 0;
+    }
+    #rule-builder-simple-iframe {
+        padding: 0;
+        width: 100%;
+        height: 740px;
+        background: #FFF;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        border-top-width: 0;
+    }
+    #rule-builder-simple-placeholder {
+        padding: 45px 0;
+        width: 100%;
+        background: #FFF;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        border-top-width: 0;
+    }
+
+    #result-preview {
+        margin-left: 0;
+        margin-right: 0;
+    }
+</style>
+<div class="container fluid" ng-app="ruleBuilder">
+    <div class="page-header">
+        <h1>Rule Builder</h1>
+    </div>
+    <div class="rule-builder" ng-controller="RuleCtrl">
+        <form role="form" name="form" ng-submit="onSubmit($event)" novalidate>
+            <div class="rule-builder-settings">
+                <div class="alert alert-danger" ng-if="error !== ''">[[error]]</div>
+                <div class="form-group"
+                    ng-class="{'has-error': (submitted && form.name.$invalid) || (form.name.$dirty && form.name.$invalid)}">
+                    <label >Name</label>
+                    <input name="name" type="text" class="form-control" placeholder="Rule name." ng-model="name" required>
+                    <span class="help-block">
+                    Enter a name to identify this rule
+                    </span>
+                </div>
+                <div class="form-group"
+                    ng-class="{'has-error': (submitted && form.test_url.$invalid) || (form.test_url.$dirty && form.test_url.$invalid)}">
+                    <label >Test URL</label>
+                    <input name="test_url" type="text" class="form-control" placeholder="Enter test request URL here." ng-model="test_url" required
+                        ng-change="onTestUrlChange()">
+                    <span class="help-block">
+                    Enter a URL that can be used to test the rule. This rule must match the
+                    URL format.
+                    </span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4"
+                        ng-class="{'has-error': (submitted && form.host.$invalid) || (form.host.$dirty && form.host.$invalid)}">
+                        <label >Host Name</label>
+                        <input name="host" type="text" class="form-control" placeholder="example.com" ng-model="host" required>
+                        <span class="help-block">
+                        Enter the host for which this rule should match (Ex: example.com)
+                        </span>
+                    </div>
+                    <div class="col-xs-8"
+                        ng-class="{'has-error': (submitted && form.path_pattern.$invalid) || (form.path_pattern.$dirty && form.path_pattern.$invalid)}">
+                        <label >Path Pattern</label>
+                        <input name="path_pattern" type="text" class="form-control" ng-model="path_pattern" required ng-pattern="/\/.*/">
+                        <span class="help-block">
+                        Enter a regular expression which will be used to determine if the rule is to be used when scraping a web page.
+                        It should match against the path (Anything after the host name)
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group"
+                    ng-class="{'has-error': (submitted && form.type.$invalid) || (form.type.$dirty && form.type.$invalid)}">
+                    <label >Result Type</label>
+                    <select name="type" class="form-control" placeholder="Select the result type" ng-model="type"  ng-change="onUpdateRuleType()" required>
+                      <option value="unknown">Unknown</option>
+                      <option value="general">General</option>
+                      <option value="text">Text</option>
+                      <option value="image">Image</option>
+                      <option value="video">Video</option>
+                      <option value="rich">Rich</option>
+                      <option value="extractor">Extractor</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <button name="save" type="submit" class="btn btn-success" value="save" ng-click="action = 'save'">Save Rule</button>
+                    <button name="test" type="submit" class="btn btn-info" value="test" ng-click="action = 'test'">Test Rule</button>
+                </div>
+            </div>
+
+            <tabset>
+                <tab heading="Simple" select="initSimple()">
+                    <div id="rule-builder-simple">
+                        <div class="navbar navbar-default">
+                            <div id="form-simple-select-field" class="navbar-form navbar-left hide">
+                                <div class="form-group">
+                                    <select name="extractor" class="form-control" ng-model="container.selected" ng-change="onUpdateSelectedValues()"
+                                        ng-options="v.name for v in values|filter:{type: 'extractor', value: 'selector'}">
+                                        <option value="">Choose a field</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only">Field Name</label>
+                                    <input type="text" class="form-control" ng-model="container.newname"
+                                        ng-disabled="container.selected !== null"
+                                        placeholder="or create a new field">
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary" type="button" ng-click="addSimpleValue()" ng-if="container.selected === null">Add Value</button>
+                                    <button class="btn btn-primary" type="button" ng-click="updateValue()" ng-if="container.selected !== null">Update Value</button>
+                                </div>
+                                <div class="form-group">
+                                    <select name="restype" class="form-control" ng-model="container.restype">
+                                        <option value="">Result Type</option>
+                                        <option value="First">First Result</option>
+                                        <option value="all">All Results</option>
+                                        <option value="merge">Merge Results</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="navbar-form navbar-right hide">
+                                <button type="button" class="btn btn-primary" ng-click="reloadIframe()">
+                                    <span class="glyphicon glyphicon-refresh"></span> Reload
+                                </button>
+                            </div>
+                        </div>
+                        <iframe id="rule-builder-simple-iframe" class="well hide"></iframe>
+                        <div id="rule-builder-simple-placeholder" class="well">
+                            <div class="well" style="max-width: 400px; margin: 0 auto 10px;">
+                                <h4>Enter a test URL and press the button to start</h4>
+                                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="startIframe()">
+                                    <span class="glyphicon glyphicon-refresh"></span> Load Page
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </tab>
+                <tab heading="Advanced" select="initAdvanced()">
+                    <div id="rule-builder-advanced">
+                        <h4 ng-if="type !== 'extractor'">Values</h4>
+                        <div ng-if="type === 'extractor'">
+                            <div class="input-group"
+                                ng-class="{'has-error': (submitted && form.extractor.$invalid) || (form.extractor.$dirty && form.extractor.$invalid)}">
+                                <label >Extractor</label>
+                                <select name="extractor" class="form-control"
+                                    ng-options="extractor.id as extractor.name for extractor in extractors"
+                                    ng-model="values.0.value"
+                                    ng-change="onUpdateExtractorType(values.0)"
+                                    required>
+                                    <option value="" disabled>Choose an extractor</option>
+                                </select>
+                            </div>
+                            <div class="form-group" ng-if="values.0.value != 'javascript'">
+                                <label>Parameters</label>
+                                <keyvalue ng-model="values.0.params"></keyvalue>
+                            </div>
+                            <div class="form-group" ng-if="values.0.value == 'javascript'">
+                                <label>Script</label>
+                                <div ui-ace="{
+                                        useWrapMode : true,
+                                        mode: 'javascript'
+                                    }"
+                                    name="script"
+                                    class="form-control"
+                                    ng-class="{'has-error': (submitted && form.script.$invalid) || (form.script.$dirty && form.script.$invalid)}"
+                                    ng-model="values.0.params.0.value"
+                                    rows="3"
+                                    required
+                                ></div>
+                            </div>
+                        </div>
+                        <div ng-if="type !== 'extractor'">
+                            <div id="form-add-value" class="form-group" ng-if="type !== 'extractor'">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Enter field name" ng-model="container.newname">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="button" ng-click="addValue()">Add Value</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div ng-repeat="(index,value) in values">
+                                <div class="rule-value panel panel-default" ng-include=" 'template-rule-value' "></div>
+                            </div>
+                            <div class="panel panel-default" ng-show="!values.length">
+                                <div class="panel-body">
+                                There are not currently any values. Try using the form above to add one
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tab>
+            </tabset>
+
+            <hr />
+
+            <a name="preview"></a>
+            <h3>Preview</h3>
+            <div id="result-preview" class="row well"></div>
+        </form>
+    </div>
+
+    <script type="text/ng-template" id="template-rule-value">
+        <div class="panel-heading">
+            <h3 class="panel-title">[[value.name]]</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group"
+                ng-class="{'has-error': (submitted && form.type.$invalid) || (form.type.$dirty && form.type.$invalid)}">
+                <label>Type</label>
+                <select name="type" class="form-control" ng-model="value.type" ng-change="onUpdateValueType(value)" required>
+                  <option value="value">Single Value</option>
+                  <option value="values">Map of Values</option>
+                  <option value="extractor">Extractor</option>
+                </select>
+            </div>
+            <div class="form-group" ng-if="value.type == 'value'"
+                ng-class="{'has-error': (submitted && form.value.$invalid) || (form.value.$dirty && form.value.$invalid)}">
+                <label>Value</label>
+                <input name="value" type="text" class="form-control" placeholder="Enter value" ng-model="value.value" required>
+            </div>
+            <div class="child-values" ng-if="value.type == 'values'">
+                <div ng-repeat="(index, value) in value.value">
+                    <div class="rule-value panel panel-default" ng-include=" 'template-rule-value' "></div>
+                </div>
+            </div>
+            <div class="child-values" ng-if="value.type == 'extractor'">
+                <div class="form-group">
+                    <label>Extractor</label>
+                    <select name="value" class="form-control" required
+                        ng-class="{'has-error': (submitted && form.value.$invalid) || (form.value.$dirty && form.value.$invalid)}"
+                        ng-options="extractor.id as extractor.name for extractor in extractors"
+                        ng-model="value.value"
+                        ng-change="onUpdateExtractorType(value)">
+                        <option value="" disabled>Choose an extractor</option>
+                    </select>
+                </div>
+                <div class="form-group" ng-if="value.value != 'javascript'">
+                    <label>Parameters</label>
+                    <keyvalue ng-model="value.params"></keyvalue>
+                </div>
+                <div class="form-group" ng-if="value.value == 'javascript'">
+                    <label>Script</label>
+                    <div ui-ace="{
+                            useWrapMode : true,
+                            mode: 'javascript'
+                        }"
+                        name="script"
+                        class="form-control"
+                        ng-class="{'has-error': (submitted && form.script.$invalid) || (form.script.$dirty && form.script.$invalid)}"
+                        ng-model="value.params.0.value"
+                        rows="3"
+                        required
+                    ></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div id="form-add-value" class="form-inline" style="display: inline;" ng-hide="value.type != 'values'">
+                    <div class="form-group">
+                        <label class="sr-only">Field Name</label>
+                        <input type="text" class="form-control" placeholder="Enter field name" ng-model="value.newname">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="button" ng-click="addChildValue(value)">Add Value</button>
+                    </div>
+                </div>
+                <button class="btn btn-danger" ng-click="deleteValue($index)">Delete</button>
+            </div>
+        </div>
+    </script>
+</div>
+<script type="text/javascript">
+    var post_id = {{.Post}};
+    var rule = {{.Rule}};
+</script>

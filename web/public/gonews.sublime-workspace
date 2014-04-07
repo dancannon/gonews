@@ -1,0 +1,418 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"pr",
+				"Println	n int, err error ƒ"
+			],
+			[
+				"imp",
+				"import	import (...) ʂ"
+			],
+			[
+				"fun",
+				"func main	func main {...} ʂ"
+			],
+			[
+				"func",
+				"func main	func main {...} ʂ"
+			],
+			[
+				"handl",
+				"HandleFunc	*mux.Route ƒ"
+			],
+			[
+				"Path",
+				"PathPrefix	*mux.Route ƒ"
+			],
+			[
+				"respo",
+				"ResponseWriter	interface ¡"
+			],
+			[
+				"Hand",
+				"HandleFunc	*mux.Route ƒ"
+			],
+			[
+				"add",
+				"addup3things"
+			],
+			[
+				"allP",
+				"allPrimesBetween"
+			],
+			[
+				"all",
+				"allPrimes"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/User/GoLang.sublime-build",
+	"command_palette":
+	{
+		"height": 370.0,
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"go new",
+				"GoSublime: New Go File"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"indent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"reindent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"less",
+				"Set Syntax: LESS"
+			],
+			[
+				"GoSublime: ",
+				"GoSublime: Browse Packages"
+			],
+			[
+				"syntax go",
+				"Set Syntax: GoSublime"
+			],
+			[
+				"go packa",
+				"GoSublime: Browse Packages"
+			],
+			[
+				"go browse",
+				"GoSublime: Browse Packages"
+			],
+			[
+				"go package",
+				"GoSublime: Browse Packages"
+			],
+			[
+				"go",
+				"GoSublime: Browse Packages"
+			],
+			[
+				"repl",
+				"SublimeREPL: Haskell"
+			],
+			[
+				"haske",
+				"Set Syntax: Haskell"
+			],
+			[
+				"haskell",
+				"Set Syntax: Haskell"
+			],
+			[
+				"haskel",
+				"SublimeREPL: Haskell"
+			],
+			[
+				"syntax bash",
+				"Set Syntax: Shell Script (Bash)"
+			],
+			[
+				"syntax haske",
+				"Set Syntax: Haskell"
+			],
+			[
+				"syntax hask",
+				"Set Syntax: Literate Haskell"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"preview",
+				"Strapdown.js Markdown: Preview in a browser"
+			],
+			[
+				"strapd",
+				"Strapdown.js Markdown: Preview in a browser"
+			],
+			[
+				"preevi",
+				"Strapdown.js Markdown: Preview in Sublime Text"
+			],
+			[
+				"Markdown",
+				"Set Syntax: Markdown"
+			]
+		],
+		"width": 435.0
+	},
+	"console":
+	{
+		"height": 468.0,
+		"history":
+		[
+			"import os; os.environ['PATH']",
+			"latexcmd",
+			"make_pdf"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/daniel/Library/Application Support/Sublime Text 3/Packages/User/GoLang.sublime-build",
+		"/Users/daniel/Go/src/GoNews/main.go",
+		"/Users/daniel/Library/Application",
+		"/Users/daniel/Go/src/GoNews/Support/Sublime",
+		"/Users/daniel/Go/src/GoNews/Text",
+		"/Users/daniel/Go/src/GoNews/2/Packages/User",
+		"/Users/daniel/Library/Application Support/Sublime Text 3/Packages/User/go.sublime-build",
+		"/Users/daniel/Library/Application Support/Sublime Text 2/Packages/User",
+		"/Users/daniel/Library/Application Support/Sublime Text 3/Packages/User/LESS.sublime-settings",
+		"/Users/daniel/Sites/GoNewsWeb/css/bootstrap.css",
+		"/etc/apache2/extra/httpd-vhosts.conf",
+		"/var/log/apache2/error_log",
+		"/etc/hosts",
+		"/Users/daniel/Sites/GoNewsWeb/js/combined.min.js",
+		"/Users/daniel/Sites/GoNewsWeb/js/source-map.js",
+		"/Users/daniel/Sites/GoNewsWeb/less/bootstrap.less",
+		"/Users/daniel/Sites/GoNewsWeb/less/style.less",
+		"/Users/daniel/Sites/GoNewsWeb/package.json",
+		"/Users/daniel/Test/Gruntfile.js",
+		"/Users/daniel/Sites/GoNewsWeb/.gitignore",
+		"/Users/daniel/Sites/GoNewsWeb/app/index.html",
+		"/Users/daniel/Sites/GoNewsWeb/app/styles/main.less",
+		"/Users/daniel/Library/LaunchAgents/com.apache.solr.plist",
+		"/Users/daniel/Sites/kac.dev/app/config/parameters.yml",
+		"/etc/apache2/httpd.conf",
+		"/Users/daniel/Sites/kac.dev/app/logs/dev.log",
+		"/Users/daniel/Downloads/wallet-instantbuy-quickstart-php/index.php",
+		"/Users/daniel/Documents/1Password.txt",
+		"/usr/local/opt/tomcat/libexec/conf/Catalina/localhost/solr.xml",
+		"/Users/daniel/Sites/kac.dev/.git/COMMIT_EDITMSG",
+		"/usr/local/etc/php/5.4/php.ini",
+		"/Users/daniel/Go/src/WebBoilerplate/controller/IndexController.go",
+		"/Users/daniel/Go/src/WebBoilerplate/main.go",
+		"/etc/apache2/extra/httpd-ssl.conf",
+		"/etc/php.ini",
+		"/Users/daniel/Library/Application Support/Sublime Text 3/Packages/GoSublime/9o.md",
+		"/Users/daniel/Go/src/WebBoilerplate/controllers/IndexController.go",
+		"/Users/daniel/Library/Application Support/Sublime Text 3/Packages/GoSublime/GoSublime.sublime-settings",
+		"/Users/daniel/Library/Application Support/Sublime Text 3/Packages/User/GoSublime.sublime-settings",
+		"/Users/daniel/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/daniel/.zshrc",
+		"/Users/daniel/.bashrc",
+		"/Users/daniel/Go/src/WebBoilerplate/static/robots.txt",
+		"/usr/local/Cellar/go/1.0.3/src/pkg/html/template/html.go",
+		"/Users/daniel/Documents/Projects/Haskell/exam.hs",
+		"/Users/daniel/Go/src/example1/newmath/sqrt.go",
+		"/Users/daniel/Go/src/example1/hello/hello.go",
+		"/usr/local/Cellar/go/1.0.3/src/pkg/compress/flate/huffman_bit_writer.go",
+		"/Users/daniel/Dropbox/Work/Uni/Year2/FP/week8/Minesweeper.hs",
+		"/Users/daniel/Documents/Projects/Haskell/ex3.hs",
+		"/Users/daniel/Documents/Projects/Haskell/ex4.hs",
+		"/Users/daniel/Documents/Projects/Haskell/ex2.hs",
+		"/Users/daniel/Library/Application Support/Sublime Text 3/Packages/SublimeREPL/SublimeREPL.sublime-settings",
+		"/Users/daniel/Documents/Projects/Haskell/ex1.hs",
+		"/Users/daniel/Documents/Projects/Haskell/test1.hs",
+		"/Users/daniel/Documents/Projects/MIPS/2.asm",
+		"/Users/daniel/Documents/Projects/MIPS/1.asm",
+		"/Users/daniel/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/daniel/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/daniel/Sites/kac.dev/src/KAC/SiteBundle/Controller/ProductController.php",
+		"/Users/daniel/Library/Application Support/Sublime Text 3/Packages/flatland/Theme - Flatland/Flatland-Monokai.tmTheme",
+		"/Users/daniel/Documents/latex.tex",
+		"/Users/daniel/Dropbox/Sublime/Packages/LaTeXTools/LaTeX.sublime-build",
+		"/Users/daniel/Documents/Haskell/test1.hs",
+		"/Users/daniel/Library/Application Support/Sublime Text 3/Packages/LaTeXTools/LaTeXTools Preferences.sublime-settings",
+		"/Users/daniel/Library/Application Support/Sublime Text 3/Packages/GoSublime/USAGE.md",
+		"/Users/daniel/Library/Application Support/Sublime Text 3/Packages/SublimeREPL/README.md",
+		"/Users/daniel/Library/Application Support/Sublime Text 3/Packages/SideBarEnhancements/messages/11.13.2012.1305.0.txt",
+		"/Users/daniel/Library/Application Support/Sublime Text 3/Packages/GoSublime/CHANGELOG.md"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 94.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"jquery",
+			"ignore",
+			"responsive",
+			"build",
+			"development",
+			"\n  // Default task.\n  grunt.registerTask('default', ['recess:lint', 'recess:development']);",
+			"');\n",
+			"@import \"",
+			"recess",
+			"\n\n  // Default task(s).\n  grunt.registerTask('default', []);",
+			"[]);\n",
+			"ssl",
+			"Group",
+			"memory",
+			"main",
+			"//\"",
+			"latexmk",
+			"make",
+			"    \n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"@import \"bootstrap/"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 33.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.9o:///Users/daniel/Go/src/GoNews":
+	{
+		"height": 110.0
+	},
+	"output.9o:///Users/daniel/Go/src/WebBoilerplate":
+	{
+		"height": 189.0
+	},
+	"output.9o:///Users/daniel/Go/src/WebBoilerplate/controllers":
+	{
+		"height": 110.0
+	},
+	"output.9o:///Users/daniel/Library/Application Support/Sublime Text 3/Packages":
+	{
+		"height": 110.0
+	},
+	"output.9o:///Users/daniel/Library/Application Support/Sublime Text 3/Packages/GoSublime":
+	{
+		"height": 110.0
+	},
+	"output.9o:///Users/daniel/Library/Application Support/Sublime Text 3/Packages/User":
+	{
+		"height": 110.0
+	},
+	"output.MarGo-output":
+	{
+		"height": 98.0
+	},
+	"output.exec":
+	{
+		"height": 98.0
+	},
+	"project": "gonews.sublime-project",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 197.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

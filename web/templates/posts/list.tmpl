@@ -1,0 +1,88 @@
+<div class="content container fluid" role="main">
+    {{if eq (len .Posts) 0}}
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>No posts could be found</p>
+            </div>
+        </div>
+
+        <ul class="pager">
+            {{if gt .CurrentPage 1}}<li class="previous"><a href="?page={{.PrevPage}}&count={{.PageCount}}">&larr; Back</a></li>{{end}}
+        </ul>
+    {{else}}
+        <ul id="post-list"class="post-list media-list">
+            {{range .Posts}}
+            <li id="post-{{.Id}}" class="post-list-item list-item media">
+                <div class="info-buttons media-buttons btn-group btn-group-vertical pull-right">
+                    <a href="/post/{{.ActualUrl}}" class="more-info-btn btn btn-default hidden-xs">
+                        <span class="icomoon icomoon-info"></span>
+                    </a>
+                    <a href="/post/{{.ActualUrl}}#comments" class="comments-btn btn btn-default">
+                        <span class="icomoon icomoon-bubbles-10"></span>
+                    </a>
+                </div>
+                <div class="large-button media-buttons btn-group btn-group-vertical pull-left">
+                    <a class="more-info-btn btn btn-default hidden-xs" data-toggle="collapse" data-target="#post-preview-{{.Id}}">
+                        <span class="icomoon icomoon-info"></span>
+                    </a>
+                </div>
+                <div class="vote-buttons media-buttons btn-group btn-group-vertical pull-left">
+                    <a href="/post/like/{{.Id}}" class="downvote-btn btn btn-default {{if eq .UserVote "like"}}active{{end}}">
+                        <span class="icomoon icomoon-thumbs-up-5"></span>
+                        <span class="badge">{{.Likes}}</span>
+                    </a>
+                    <a href="/post/dislike/{{.Id}}" class="upvote-btn btn btn-default {{if eq .UserVote "dislike"}}active{{end}}">
+                        <span class="icomoon icomoon-thumbs-up-6"></span>
+                        <span class="badge">{{.Dislikes}}</span>
+                    </a>
+                </div>
+                <div class="media-body">
+                    {{if eq .Type "link"}}
+                    <a href="{{.Link}}" class="media-heading"><h4>{{.Title}}</h4></a>
+                    {{else}}
+                    <a href="/post/{{.ActualUrl}}" class="media-heading"><h4>{{.Title}}</h4></a>
+                    {{end}}
+                </div>
+                <div class="media-meta">
+                    <small class="author">By <a href="/profile/{{.AuthorName}}">{{.AuthorName}}</a></small>
+                    <small class="published">On <time datetime="{{.Created}}" pubdate="">{{.Created.Format "Jan 2, 2006 at 3:04pm"}}</time></small>
+                </div>
+            </li>
+            <li id="post-preview-{{.Id}}" class="post-preview media panel-collapse collapse">
+                <div class="post-content {{if eq .Type "link"}}post-content-embed{{end}}">
+                    {{if eq .Type "text"}}
+                        <p>{{raw .Content}}</p>
+                    {{else if eq .Type "link"}}
+                        {{if eq .EmbedType "fetching"}}
+                        <div class="text-center">
+                            <p>The content is currently being fetched.</p>
+                        </div>
+                        {{else}}
+                            {{if eq .EmbedType "general"}}
+                                <h2>{{.EmbedContent.title}}</h2>
+                                {{if .EmbedContent.content}}{{nl2br .EmbedContent.content}}{{end}}
+                            {{else if eq .EmbedType "text"}}
+                                <h2>{{.EmbedContent.title}}</h2>
+                                {{raw .EmbedContent.text}}
+                            {{else if eq .EmbedType "image"}}
+                            <div class="text-center">
+                                <img src='{{.EmbedContent.url}}' height='315' />
+                            </div>
+                            {{else if or (eq .EmbedType "video") (eq .EmbedType "rich")}}
+                            <div class="text-center">
+                                {{raw .EmbedContent.html}}
+                            </div>
+                            {{end}}
+                        {{end}}
+                    {{end}}
+                </div>
+            </li>
+            {{end}}
+        </ul>
+
+        <ul class="pager">
+            {{if gt .CurrentPage 1}}<li class="previous"><a href="?page={{.PrevPage}}&count={{.PageCount}}">&larr; Previous Page</a></li>{{end}}
+            {{if le .PageCount .TotalCount}}<li class="next"><a href="?page={{.NextPage}}&count={{.PageCount}}">Next Page &rarr;</a></li>{{end}}
+        </ul>
+    {{end}}
+</div><!-- /.container -->

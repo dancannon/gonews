@@ -1,0 +1,83 @@
+<div class="content container fluid" role="main">
+    <div class="page-header clearfix">
+        <div class="page-title pull-left">
+            <h1>
+                {{if .Host }}
+                <a href="/rules?post={{.Post}}&q={{.Query}}" class="btn btn-default" role="button"><span class="glyphicon glyphicon-chevron-left"></span> Back</a> Rules for <span>{{.Host}}</span>
+                {{else}}
+                Rules
+                {{end}}
+                <a href="/rules/new?post={{.Post}}&q={{.Query}}" class="btn btn-primary">New Rule</a>
+            </h1>
+        </div>
+        <form id="rule-search" class="form-search form-inline pull-right" role="search" action="">
+            {{if .Query}}<a href="?post={{.Post}}&q=" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></a>{{end}}
+            <div class="form-group">
+                <input name="q" type="text" class="form-control" value="{{.Query}}" placeholder="Search">
+                <input name="post" type="hidden" value="{{.Post}}" />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    {{if eq (len .Rules) 0}}
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>No posts could be found</p>
+            </div>
+        </div>
+
+        <ul class="pager">
+            {{if gt .CurrentPage 1}}<li class="previous"><a href="?page={{.PrevPage}}&count={{.PageCount}}">&larr; Back</a></li>{{end}}
+        </ul>
+    {{else}}
+        <ul id="rule-list"class="rule-list media-list">
+            {{$post := .Post}}
+            {{if .Post}}
+            <li class="rule-list-item list-item media">
+                <div class="single-button media-buttons btn-group btn-group-vertical pull-right">
+                    <a href="/post/refresh/{{$post}}/" class="btn btn-default">
+                        <span class="glyphicon glyphicon-check"> Select</span>
+                    </a>
+                </div>
+
+                <div class="media-body rule-body">
+                    <h4>Reset Rule</h4>
+                </div>
+            </li>
+            {{end}}
+            {{range .Rules}}
+            <li id="{{.Id}}" class="rule-list-item list-item media">
+                {{if $post}}
+                <div class="single-button media-buttons btn-group btn-group-vertical pull-right">
+                    <a href="/post/refresh/{{$post}}/{{.Id}}" class="btn btn-default">
+                        <span class="glyphicon glyphicon-check"> Select</span>
+                    </a>
+                </div>
+                {{end}}
+                <div class="vote-buttons media-buttons btn-group btn-group-vertical pull-left">
+                    <a href="/rule/like/{{.Id}}" class="downvote-btn btn btn-default {{if eq .UserVote "like"}}active{{end}}">
+                        <span class="icomoon icomoon-thumbs-up-5"></span>
+                        <span class="badge">{{.Likes}}</span>
+                    </a>
+                    <a href="/rule/dislike/{{.Id}}" class="upvote-btn btn btn-default {{if eq .UserVote "dislike"}}active{{end}}">
+                        <span class="icomoon icomoon-thumbs-up-6"></span>
+                        <span class="badge">{{.Dislikes}}</span>
+                    </a>
+                </div>
+                <div class="media-body rule-body">
+                    <h4><a href="/rule/edit/{{.Id}}?post={{$post}}" class="rule-title media-heading">{{.Name}}</a> (<a href="/rules/host/{{.Host}}?post={{$post}}&q=">{{.Host}}</a>)</h4>
+                </div>
+                <div class="meta media-meta">
+                    <small class="author">By <a href="#">{{.AuthorName}}</a></small>
+                    <small class="published">On <time datetime="{{.Created }}" pubdate="">{{ .Created}}</time></small>
+                </div>
+            </li>
+            {{end}}
+        </ul>
+
+        <ul class="pager">
+            {{if gt .CurrentPage 1}}<li class="previous"><a href="?page={{.PrevPage}}&count={{.PageCount}}">&larr; Previous Page</a></li>{{end}}
+            {{if le .PageCount .TotalCount}}<li class="next"><a href="?page={{.NextPage}}&count={{.PageCount}}">Next Page &rarr;</a></li>{{end}}
+        </ul>
+    {{end}}
+</div><!-- /.container -->

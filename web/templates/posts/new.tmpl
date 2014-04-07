@@ -1,0 +1,48 @@
+<div class="content container narrow" role="main">
+    <div class="well">
+        <legend>Submit</legend>
+        {{range .Errors.Overall}}
+        <div class="alert alert-danger">{{.}}</div>
+        {{end}}
+
+        <ul class="nav nav-tabs" id="submit-form-tabs">
+            <li class="active"><a href="#submit-form-tab-link" data-toggle="tab">Link</a></li>
+            <li><a href="#submit-form-tab-text" data-toggle="tab">Text</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="submit-form-tab-link">
+                <form role="form" action="/posts/new" method="POST">
+                    <div class="form-group {{if .Errors.FieldError "Title"}}has-error{{end}}">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" value="{{.Post.Title}}">
+                        {{if .Errors.FieldError "Title"}}<p class="help-block">{{.Errors.FieldError "Title"}}</p>{{end}}
+                    </div>
+                    <div class="form-group {{if .Errors.FieldError "Link"}}has-error{{end}}">
+                        <label for="url">Link</label>
+                        <input type="text" class="form-control" name="link" id="url" placeholder="Enter Link" value="{{.Post.Link}}">
+                        {{if .Errors.FieldError "Link"}}<p class="help-block">{{.Errors.FieldError "Link"}}</p>{{end}}
+                    </div>
+                    <input type="hidden" name="type" value="link" />
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="submit-form-tab-text">
+                <form role="form" action="/posts/new" method="POST">
+                    <div class="form-group {{if .Errors.FieldError "Title"}}has-error{{end}}">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" value="{{.Post.Title}}">
+                        {{if .Errors.FieldError "Title"}}<p class="help-block">{{.Errors.FieldError "Title"}}</p>{{end}}
+                    </div>
+                    <div class="form-group {{if .Errors.FieldError "Content"}}has-error{{end}}">
+                        <label for="content">Content</label>
+                        <textarea class="form-control" name="content" id="content" data-provide="markdown" rows="10">{{.Post.Content}}</textarea>
+                        {{if .Errors.FieldError "Content"}}<p class="help-block">{{.Errors.FieldError "Content"}}</p>{{end}}
+                    </div>
+                    <input type="hidden" name="type" value="text" />
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div><!-- /.container -->

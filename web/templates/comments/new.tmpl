@@ -1,0 +1,10 @@
+<div class="content container narrow" role="main">
+    <div class="well">
+        <legend>New Comment</legend>
+        {{range .Errors.Overall}}
+        <div class="alert alert-danger">{{.}}</div>
+        {{end}}
+
+        {{template "comments/new_form" .}}
+    </div>
+</div><!-- /.container -->

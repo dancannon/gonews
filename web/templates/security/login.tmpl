@@ -1,0 +1,16 @@
+<div class="container">
+    <form class="form-signin" action="/login" method="POST">
+        <h2 class="form-signin-heading">Please sign in</h2>
+
+        {{range .Errors.Overall}}
+        <div class="alert alert-danger">{{.}}</div>
+        {{end}}
+
+        <input type="text" name="username" class="form-control" placeholder="Username" autofocus value="{{.Username}}">
+        <input type="password" name="password" class="form-control" placeholder="Password">
+        <label class="checkbox">
+            <input type="checkbox" name="remember-me" value="true" {{if .RememberMe}}checked="checked"{{end}}> Remember me
+        </label>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+</div> <!-- /container -->
