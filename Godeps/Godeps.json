@@ -1,0 +1,124 @@
+{
+	"ImportPath": "github.com/dancannon/gonews",
+	"GoVersion": "devel +6e163a22bea3 Tue Feb 25 14:39:12 2014 +0400",
+	"Deps": [
+		{
+			"ImportPath": "code.google.com/p/cascadia",
+			"Comment": "null-29",
+			"Rev": "4a84b694f664db79c60ea9fb9115e0bc685e4b54"
+		},
+		{
+			"ImportPath": "code.google.com/p/go.crypto/bcrypt",
+			"Comment": "null-191",
+			"Rev": "7aa593ce8ceaf0199504fff27455bbb60eedabc7"
+		},
+		{
+			"ImportPath": "code.google.com/p/go.crypto/blowfish",
+			"Comment": "null-191",
+			"Rev": "7aa593ce8ceaf0199504fff27455bbb60eedabc7"
+		},
+		{
+			"ImportPath": "code.google.com/p/go.net/html",
+			"Comment": "null-116",
+			"Rev": "89dbba2db2d45f337bb06f974ec45d3c426a5072"
+		},
+		{
+			"ImportPath": "code.google.com/p/go.text/transform",
+			"Comment": "null-78",
+			"Rev": "b381881d02615d8d58bba23bda3cb4ee20300630"
+		},
+		{
+			"ImportPath": "code.google.com/p/go.text/unicode/norm",
+			"Comment": "null-78",
+			"Rev": "b381881d02615d8d58bba23bda3cb4ee20300630"
+		},
+		{
+			"ImportPath": "code.google.com/p/goprotobuf/proto",
+			"Comment": "go.r60-138",
+			"Rev": "8af8443f6427e7a7faa07fbc40d88f5a61f7892c"
+		},
+		{
+			"ImportPath": "github.com/BurntSushi/toml",
+			"Rev": "50ab0c35d35f5355cee28b0120b18dfbbd13ad36"
+		},
+		{
+			"ImportPath": "github.com/PuerkitoBio/goquery",
+			"Comment": "v0.3.2",
+			"Rev": "f065786d418c9d22a33cad33decd59277af31471"
+		},
+		{
+			"ImportPath": "github.com/clbanning/mxj",
+			"Rev": "d9e0056da1431198aa5892611f4bd525eb09ec5e"
+		},
+		{
+			"ImportPath": "github.com/codegangsta/inject",
+			"Rev": "9aea7a2fa5b79ef7fc00f63a575e72df33b4e886"
+		},
+		{
+			"ImportPath": "github.com/codegangsta/martini",
+			"Comment": "v0.1",
+			"Rev": "fc85f10778a765eee8af3f778bf88b1b0aa48009"
+		},
+		{
+			"ImportPath": "github.com/codegangsta/martini-contrib/binding",
+			"Comment": "v0.1-159-g8ce6181",
+			"Rev": "8ce6181c2609699e4c7cd30994b76a850a9cdadc"
+		},
+		{
+			"ImportPath": "github.com/codegangsta/martini-contrib/render",
+			"Comment": "v0.1-159-g8ce6181",
+			"Rev": "8ce6181c2609699e4c7cd30994b76a850a9cdadc"
+		},
+		{
+			"ImportPath": "github.com/codegangsta/martini-contrib/sessions",
+			"Comment": "v0.1-159-g8ce6181",
+			"Rev": "8ce6181c2609699e4c7cd30994b76a850a9cdadc"
+		},
+		{
+			"ImportPath": "github.com/dancannon/gofetch",
+			"Rev": "64acbc63aba40ad96018b72a0869117e0487eaf1"
+		},
+		{
+			"ImportPath": "github.com/dancannon/gorethink",
+			"Comment": "v0.9-86-g58d5b87",
+			"Rev": "58d5b8717eb6bf453443a71da99b94039f76bd24"
+		},
+		{
+			"ImportPath": "github.com/davecgh/go-spew/spew",
+			"Rev": "65ca732a33a40c2a5b9e036f236f975e7e85cf6c"
+		},
+		{
+			"ImportPath": "github.com/extemporalgenome/slug",
+			"Rev": "de70af6e24d0e6bdd6eaef276d2e9910e68a1397"
+		},
+		{
+			"ImportPath": "github.com/garyburd/redigo/redis",
+			"Rev": "a470367e65a4a6986739b387f0e0aaa034d55466"
+		},
+		{
+			"ImportPath": "github.com/gorilla/context",
+			"Rev": "708054d61e5a2918b9f4e9700000ee611dcf03f5"
+		},
+		{
+			"ImportPath": "github.com/gorilla/securecookie",
+			"Rev": "6186150e83a63fbc943913bc96d4528460d79a28"
+		},
+		{
+			"ImportPath": "github.com/gorilla/sessions",
+			"Rev": "ba63748c4ac1e5314ce46afb09cd6b7cc99718f8"
+		},
+		{
+			"ImportPath": "github.com/jmcvetta/randutil",
+			"Rev": "53e1e064d354a2d879935e250c1445526d73b96c"
+		},
+		{
+			"ImportPath": "github.com/robertkrimen/otto",
+			"Rev": "0c82879349b7b650679902090ec5d18e616e1186"
+		},
+		{
+			"ImportPath": "github.com/russross/blackfriday",
+			"Comment": "v1.1-54-ge078bb8",
+			"Rev": "e078bb8ec34db7cc285f347d24f367b95c909ece"
+		}
+	]
+}

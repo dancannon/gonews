@@ -1,0 +1,199 @@
+{
+    "plugins": [{
+        "id": "js_test",
+        "script_type": "js",
+        "filename": "js_plugins/test.js"
+    }],
+    "types": [{
+        "id": "unknown",
+        "allow_extra": true,
+        "values": {}
+    }, {
+        "id": "raw",
+        "allow_extra": false,
+        "values": {
+            "mime_type": {
+                "required": true
+            }
+        }
+    }, {
+        "id": "general",
+        "allow_extra": false,
+        "values": {
+            "title": {
+                "required": true
+            },
+            "content": {
+                "required": true
+            }
+        }
+    }, {
+        "id": "text",
+        "values": {
+            "title": {
+                "required": true
+            },
+            "author": {
+                "required": false,
+                "values": {
+                    "name": {
+                        "required": true
+                    },
+                    "url": {
+                        "required": false
+                    }
+                }
+            },
+            "published": {
+                "required": false
+            },
+            "text": {
+                "required": true
+            }
+        }
+    }, {
+        "id": "photo",
+        "values": {
+            "title": {
+                "required": true
+            },
+            "caption": {
+                "required": false
+            },
+            "author": {
+                "required": false,
+                "values": {
+                    "name": {
+                        "required": true
+                    },
+                    "url": {
+                        "required": false
+                    }
+                }
+            },
+            "thumbnail": {
+                "required": false,
+                "values": {
+                    "url": {
+                        "required": true
+                    },
+                    "width": {
+                        "required": false
+                    },
+                    "height": {
+                        "required": false
+                    }
+                }
+            },
+            "url": {
+                "required": true
+            },
+            "height": {
+                "required": false
+            },
+            "width": {
+                "required": false
+            }
+        }
+    }, {
+        "id": "video",
+        "values": {
+            "title": {
+                "required": true
+            },
+            "description": {
+                "required": false
+            },
+            "author": {
+                "required": false,
+                "values": {
+                    "name": {
+                        "required": true
+                    },
+                    "url": {
+                        "required": true
+                    }
+                }
+            },
+            "thumbnail": {
+                "required": false,
+                "values": {
+                    "url": {
+                        "required": true
+                    },
+                    "width": {
+                        "required": false
+                    },
+                    "height": {
+                        "required": false
+                    }
+                }
+            },
+            "html": {
+                "required": true
+            }
+        }
+    }, {
+        "id": "rich",
+        "values": {
+            "html": {
+                "required": true
+            },
+            "height": {
+                "required": false
+            },
+            "width": {
+                "required": false
+            }
+        }
+    }],
+    "rules": [{
+        "id": "base",
+        "priority": 0,
+        "type": "unknown",
+        "url_pattern": ".*",
+        "values": [{
+            "type": "extractor",
+            "id": "base"
+        }]
+    }, {
+        "id": "bbc_news",
+        "priority": 5,
+        "type": "text",
+        "host": "bbc.co.uk",
+        "path_pattern": "/news/.*",
+        "values": [{
+            "name": "title",
+            "type": "extractor",
+            "id": "selector",
+            "params": {
+                "selector": ".story-header"
+            }
+        }, {
+            "name": "author",
+            "type": "values",
+            "value": [{
+                "name": "name",
+                "type": "extractor",
+                "id": "selector",
+                "params": {
+                    "selector": ".byline-name"
+                }
+            }]
+        }, {
+            "name": "published",
+            "type": "extractor",
+            "id": "selector",
+            "params": {
+                "selector": ".story-date .date"
+            }
+        }, {
+            "name": "text",
+            "type": "extractor",
+            "id": "text",
+            "params": {
+                "selector": ".introduction"
+            }
+        }]
+    }]
+}
