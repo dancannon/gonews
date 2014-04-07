@@ -6,6 +6,7 @@ build:
 deploy:
 	go get -u
 	go install
+	restart gonews
 
 build_docker:
 	docker build -t dancannon/gonews .
